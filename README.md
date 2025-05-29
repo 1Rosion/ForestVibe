@@ -21,4 +21,4 @@
 
 1. Clonează repository-ul:
    ```bash
-   git clone https://github.com/numele-tau/chillvibes.git
+   git clone https://github.com/1Rosion/ForestVibe.git
