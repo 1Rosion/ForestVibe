@@ -1,4 +1,4 @@
-# 🌿 Forest Vives (link: https://1rosion.github.io/ForestVibe/ )
+# 🌿 [Forest Vibes](https://1rosion.github.io/ForestVibe/ )
 
 **Forest Vibes** este o aplicație web minimalistă care îți permite să asculți sunete liniștitoare din natură, ideală pentru relaxare, concentrare sau somn.
 
