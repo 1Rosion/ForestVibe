@@ -2,8 +2,6 @@
 
 **Forest Vibes** este o aplicație web minimalistă care îți permite să asculți sunete liniștitoare din natură, ideală pentru relaxare, concentrare sau somn.
 
-![ChillVibes Screenshot](./09597a23-1be8-4e98-bf1f-1332bcccd5d5.png)
-
 ## 🔊 Funcționalități
 
 - 🎧 **Redare simultană** a mai multor sunete (ploaie, păsări, bufnițe, apă curgătoare)
