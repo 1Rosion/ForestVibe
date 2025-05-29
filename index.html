@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+
+   
+
+    <style>
+        html {
+            overflow: hidden;
+            height: 100dvh;
+        }
+
+        body {
+            height: 100dvh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-image: url(https://images.pexels.com/photos/2606532/pexels-photo-2606532.jpeg?cs=srgb&dl=pexels-tomfisk-2606532.jpg&fm=jpg);
+            background-size: cover;
+            background-repeat: 1;
+            background-position: center;
+        }
+
+        body h1,
+        body h2,
+        body h3,
+        div
+        {
+            color: #001a4a;
+        }
+
+        .playing {
+            box-shadow: 0px 0px 0px !important;
+            transform: matrix(-10px);
+        }
+
+        .playing::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+
+
+            border: 2px dashed black;;
+            border-radius: 50%;
+            animation: Rotate 15s linear infinite;
+        }
+
+        @keyframes Rotate {
+            0% {
+                transform: rotateZ(0deg);
+            }
+            100%{
+                transform: rotateZ(360deg);
+            }
+        }
+
+        .PlayMusic {
+            position: relative;
+            width: 8vw;
+            aspect-ratio: 1 / 1;
+            
+            background-color: #FBDD94;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            border-radius: 50%;
+
+            box-shadow: -2px 2px 0px ;
+        }
+
+        .PlayMusic svg {
+            width: 50%;
+            height: 50%;
+        }
+
+        #MusicContainer {
+            display: flex;
+            justify-content: space-around;
+
+            width: 100%;
+        }
+
+        #MusicContainer div:first {
+            background-color: #001a4a;
+        }
+
+        .PlayMusic input[type="range"] {
+            position: absolute;
+            bottom: -30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="vol"></div>
+
+    <div id="MusicContainer">
+        <div class="PlayMusic">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M558-84q-15 8-30.5 2.5T504-102l-60-120q-8-15-2.5-30.5T462-276q15-8 30.5-2.5T516-258l60 120q8 15 2.5 30.5T558-84Zm240 0q-15 8-30.5 2.5T744-102l-60-120q-8-15-2.5-30.5T702-276q15-8 30.5-2.5T756-258l60 120q8 15 2.5 30.5T798-84Zm-480 0q-15 8-30.5 2.5T264-102l-60-120q-8-15-2.5-30.5T222-276q15-8 30.5-2.5T276-258l60 120q8 15 2.5 30.5T318-84Zm-18-236q-91 0-155.5-64.5T80-540q0-83 55-145t136-73q32-57 87.5-89.5T480-880q90 0 156.5 57.5T717-679q69 6 116 57t47 122q0 75-52.5 127.5T700-320H300Zm0-80h400q42 0 71-29t29-71q0-42-29-71t-71-29h-60v-40q0-66-47-113t-113-47q-48 0-87.5 26T333-704l-10 24h-25q-57 2-97.5 42.5T160-540q0 58 41 99t99 41Zm180-200Z"/></svg>
+
+            <audio id="audio" src="./resurse/rainSound.mp3"></audio>
+            <input type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+        <div class="PlayMusic">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m334-80-74-30 58-141q-106-28-172-114T80-560v-160q0-66 47-113t113-47q22 0 42 7.5t40 15.5l238 97-160 60v60l440 280 40 200h-80l-40-80H560v160h-80v-160h-80L334-80Zm66-240h353l-63-40H400q-66 0-113-47t-47-113h80q0 33 23.5 56.5T400-440h165L320-596v-124q0-33-23.5-56.5T240-800q-33 0-56.5 23.5T160-720v160q0 100 70 170t170 70ZM240-680q-17 0-28.5-11.5T200-720q0-17 11.5-28.5T240-760q17 0 28.5 11.5T280-720q0 17-11.5 28.5T240-680Zm160 320Z"/></svg>
+
+            <audio id="audio" src="./resurse/birds.wav"></audio>
+            <input type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+        <div class="PlayMusic">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-80q-134 0-227-93t-93-227v-200q0-122 96-201t224-79q128 0 224 79t96 201v520H480Zm0-80h80q-19-25-29.5-55.5T520-280v-42q-10 1-20 1.5t-20 .5q-67 0-129.5-23.5T240-415v15q0 100 70 170t170 70Zm120-120q0 50 35 85t85 35v-255q-26 26-56 44.5T600-340v60ZM440-560q0-66-45-111t-109-48q-22 24-34 54t-12 65q0 89 72.5 144.5T480-400q95 0 167.5-55.5T720-600q0-35-12-65.5T674-720q-64 2-109 48t-45 112h-80Zm-100 0q-17 0-28.5-11.5T300-600q0-17 11.5-28.5T340-640q17 0 28.5 11.5T380-600q0 17-11.5 28.5T340-560Zm280 0q-17 0-28.5-11.5T580-600q0-17 11.5-28.5T620-640q17 0 28.5 11.5T660-600q0 17-11.5 28.5T620-560ZM370-778q34 14 62 37t48 52q20-29 47.5-52t61.5-37q-25-11-52.5-16.5T480-800q-29 0-56.5 5.5T370-778Zm430 618H520h280Zm-320 0q-100 0-170-70t-70-170q0 100 70 170t170 70h80-80Zm120-120q0 50 35 85t85 35q-50 0-85-35t-35-85ZM480-689Z"/></svg>
+
+            <audio id="audio" src="./resurse/owl.mp3"></audio>
+            <input type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+        <div class="PlayMusic">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M80-240v-80q38 0 56.5-20t77.5-20q59 0 77.5 20t54.5 20q38 0 56.5-20t77.5-20q57 0 77.5 20t56.5 20q38 0 55.5-20t76.5-20q59 0 77.5 20t56.5 20v80q-57 0-77.5-20T746-280q-36 0-54.5 20T614-240q-57 0-77.5-20T480-280q-38 0-56.5 20T346-240q-59 0-76.5-20T214-280q-38 0-56.5 20T80-240Zm0-160v-80q38 0 56.5-20t77.5-20q57 0 76.5 20t55.5 20q38 0 56.5-20t77.5-20q57 0 77 20t55 20q38 0 56.5-20t77.5-20q57 0 77.5 20t56.5 20v80q-59 0-78.5-20T746-440q-36 0-54.5 20T614-400q-57 0-77.5-20T480-440q-38 0-55.5 20T348-400q-59 0-78.5-20T214-440q-36 0-56.5 20T80-400Zm0-160v-80q38 0 56.5-20t77.5-20q57 0 76.5 20t55.5 20q38 0 56.5-20t77.5-20q57 0 77 20t55 20q38 0 56.5-20t77.5-20q57 0 77.5 20t56.5 20v80q-59 0-78.5-20T746-600q-36 0-54.5 20T614-560q-57 0-77.5-20T480-600q-38 0-55.5 20T348-560q-59 0-78.5-20T214-600q-36 0-56.5 20T80-560Z"/></svg>
+
+            <audio id="audio" src="./resurse/ocean.mp3"></audio>
+            <input type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+    </div>
+
+    <script>
+        const timerPause = [() => 0, () => 0, () => Math.random() * 4 + 2, () => 0]; // pauzele în secunde
+        const audio = [];
+        const volum = [];
+
+        $(".PlayMusic input[type='range']").each(function () {
+            const el = this;
+            volum.push(el);
+
+            el.addEventListener("change", () => {
+                const index = volum.indexOf(el);
+                audio[index].volume = parseFloat(el.value);
+            });
+        });
+
+        $(".PlayMusic audio").each(function () {
+            const el = this;
+            audio.push(el);
+
+            el.addEventListener("ended", () => {
+                const index = audio.indexOf(el);
+                const pauza = timerPause[index]() * 1000;
+
+                setTimeout(() => {
+                    el.currentTime = 0;
+                    el.play();
+                }, pauza);
+            });
+        });
+
+        $('.PlayMusic').on('click', function (e) {
+            if (e.target.tagName != "INPUT"){
+                if ($(this).hasClass("playing")) {
+                    $(this).removeClass("playing");
+                    $(this).children()[1].currentTime = 0;
+                    $(this).children()[1].pause();
+                }
+                else{
+                    $(this).addClass('playing');
+                    $(this).children()[1].play();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
