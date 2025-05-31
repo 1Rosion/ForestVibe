@@ -6,8 +6,6 @@
     <title>Document</title>
     <script src="js/jquery.js"></script>
 
-   
-
     <style>
         html {
             overflow: hidden;
@@ -21,9 +19,8 @@
             justify-content: center;
             align-items: center;
 
-            background-image: url(https://images.pexels.com/photos/2606532/pexels-photo-2606532.jpeg?cs=srgb&dl=pexels-tomfisk-2606532.jpg&fm=jpg);
+            background-image: url("./resurse/low.jpg");
             background-size: cover;
-            background-repeat: 1;
             background-position: center;
         }
 
@@ -41,15 +38,17 @@
         }
 
         .playing::after {
-            position: absolute;
             content: "";
+
+            position: absolute;
             top: 0;
             left: 0;
-            width: calc(100% - 2px);
-            height: calc(100% - 2px);
+            
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
 
 
-            border: 2px dashed black;;
+            border: 2px dashed black;
             border-radius: 50%;
             animation: Rotate 15s linear infinite;
         }
@@ -77,6 +76,8 @@
             border-radius: 50%;
 
             box-shadow: -2px 2px 0px ;
+
+            margin-bottom: 40px;
         }
 
         .PlayMusic svg {
@@ -87,8 +88,23 @@
         #MusicContainer {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
 
             width: 100%;
+        }
+
+        @media (max-width: 750px){
+            .PlayMusic{
+                margin-left: 16%;
+                margin-right: 16%;
+
+                width: 10vw;
+            }
+
+            .playing::after {            
+                width: calc(100% - 3px);
+                height: calc(100% - 3px);
+            }
         }
 
         #MusicContainer div:first {
@@ -98,8 +114,9 @@
         .PlayMusic input[type="range"] {
             position: absolute;
             bottom: -30px;
-        }
 
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -133,9 +150,22 @@
     </div>
 
     <script>
+        const el = document.querySelector('body');
+        const highRes = new Image();
+        highRes.src = './resurse/high.jpg';
+
+        highRes.onload = () => {
+            el.style.backgroundImage = `url('./resurse/high.jpg')`;
+        };
+    </script>
+
+
+
+    <script>
         const timerPause = [() => 0, () => 0, () => Math.random() * 4 + 2, () => 0]; // pauzele în secunde
         const audio = [];
         const volum = [];
+        const isPlaying = [];
 
         $(".PlayMusic input[type='range']").each(function () {
             const el = this;
@@ -150,14 +180,17 @@
         $(".PlayMusic audio").each(function () {
             const el = this;
             audio.push(el);
+            isPlaying.push(!el.paused);
 
             el.addEventListener("ended", () => {
                 const index = audio.indexOf(el);
                 const pauza = timerPause[index]() * 1000;
 
                 setTimeout(() => {
-                    el.currentTime = 0;
-                    el.play();
+                    if (isPlaying[index]) {
+                        el.currentTime = 0;
+                        el.play();
+                    }
                 }, pauza);
             });
         });
@@ -168,10 +201,16 @@
                     $(this).removeClass("playing");
                     $(this).children()[1].currentTime = 0;
                     $(this).children()[1].pause();
+
+                    const index = audio.indexOf($(this).children()[1]);
+                    isPlaying[index] = false
                 }
                 else{
                     $(this).addClass('playing');
                     $(this).children()[1].play();
+
+                    const index = audio.indexOf($(this).children()[1]);
+                    isPlaying[index] = true
                 }
             }
         });
